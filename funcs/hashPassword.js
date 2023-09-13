@@ -1,7 +1,7 @@
 import bcrypt from "bcrypt";
 
-// Fonction pour hasher les mots de passes facilement
 const hashPassword = async (password) => {
+    // Simple function to hash passwords
     const hashRounds = 10;
 
     const salt = await bcrypt.genSalt(hashRounds);

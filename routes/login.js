@@ -7,7 +7,6 @@ const jwt_token = process.env.JWT_TOKEN;
 
 const loginRouter = Router()
 
-// Endpoint de connexion
 loginRouter.post('/login', async (req, res) => {
     const {username, password} = req.body;
 
@@ -23,9 +22,9 @@ loginRouter.post('/login', async (req, res) => {
         return res.status(401).json({error: 401});
     }
 
+    // Sign username and userType, we won't need more, using private token
     const token = jwt.sign({username, userType: user.userType}, jwt_token);
 
-    res.header("Authorization", token);
     res.json({token});
 });
 
