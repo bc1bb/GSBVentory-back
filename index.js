@@ -55,6 +55,7 @@ app.post('/login', async (req, res) => {
 
     const token = jwt.sign({ username, userType: user.userType }, jwt_token);
 
+    res.header("Authorization", token);
     res.json({ token });
 });
 
