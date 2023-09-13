@@ -2,9 +2,7 @@ import express from 'express';
 import mongoose from "mongoose";
 import cors from 'cors';
 
-import {loginRouter, healthcheckRouter} from "./routes/index.js";
-
-import authenticate from "./funcs/authenticate.js";
+import {loginRouter, healthcheckRouter, userRouter} from "./routes/index.js";
 
 const db_url = process.env.DB_URL;
 const port = process.env.PORT || 3000;
@@ -23,10 +21,7 @@ app.use(cors());
 
 app.use(loginRouter);
 app.use(healthcheckRouter);
-
-app.get('/user', authenticate, async (req, res) => {
-    res.json({ "logged": "ok" });
-});
+app.use(userRouter);
 
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
