@@ -1,8 +1,7 @@
 import express from 'express';
 import mongoose from "mongoose";
 import cors from 'cors';
-
-import {loginRouter, healthcheckRouter, userRouter} from "./routes/index.js";
+import router from "./routes/index.js";
 
 const db_url = process.env.DB_URL;
 const port = process.env.PORT || 3000;
@@ -19,9 +18,7 @@ app.use(express.json());
 
 app.use(cors());
 
-app.use(loginRouter);
-app.use(healthcheckRouter);
-app.use(userRouter);
+app.use(router);
 
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
