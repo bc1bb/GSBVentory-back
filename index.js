@@ -2,8 +2,6 @@ import express from 'express';
 import mongoose from "mongoose";
 import cors from 'cors';
 
-import User from "./schemas/index.js";
-
 import {loginRouter, healthcheckRouter} from "./routes/index.js";
 
 import authenticate from "./funcs/authenticate.js";
