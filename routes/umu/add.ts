@@ -8,6 +8,10 @@ const addRouter = Router()
 addRouter.post('/umu', authenticate, async (req: LoggedInRequest, res: Response) => {
     const {username, password, userType} = req.body
 
+    if (await User.findOne({username}) !== null) {
+        return res.status(406).json({error: "Invalid username"});
+    }
+
     const hashedPassword = await hashPassword(password);
     const userTypeInt = parseInt(userType);
 

@@ -12,12 +12,4 @@ listRouter.get('/hmu', authenticate, async (req: LoggedInRequest, res: Response)
     res.json(json);
 });
 
-listRouter.get('/hmu/:type', authenticate, async (req: LoggedInRequest, res: Response) => {
-    const list = await Hardware.find({ "type": req.params.type }).lean();
-
-    const json = JSON.parse(JSON.stringify(list));
-
-    res.json(json);
-});
-
 export default listRouter;
