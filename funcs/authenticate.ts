@@ -1,8 +1,9 @@
-import jwt, {JwtPayload} from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 import {NextFunction, Request, Response} from "express";
+import fetchUser from "./fetchUser";
 
 export interface LoggedInRequest extends Request {
-    token: JwtPayload;
+    user: object;
 }
 
 const authenticate = (req: Request, res: Response, next: NextFunction) => {
@@ -17,15 +18,16 @@ const authenticate = (req: Request, res: Response, next: NextFunction) => {
     }
 
     // Decodes received token using private token
-    jwt.verify(token, jwt_token, (err, decoded: any) => {
+    jwt.verify(token, jwt_token, async (err, decoded: any) => {
         if (err) {
-            return res.status(401).json({ error: 'Invalid Token' });
+            return res.status(401).json({error: 'Invalid Token'});
         }
 
-        // JWT Payload is stored in decoded
-        // Converting req to LoggedInRequest, so we can add jwt payload to the request
+        // JWT Payload is stored in decoded (decoded.user = userid)
+        // Converting req to LoggedInRequest, so we can add user data to the request
         // Therefore allowing us to send data from this middleware to the actual route that will know who be doing what (what da dog doin)
-        (req as LoggedInRequest).token = decoded;
+        (req as LoggedInRequest).user = await fetchUser(decoded.user);
+
         next();
     });
 };
