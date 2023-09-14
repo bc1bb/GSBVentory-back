@@ -27,9 +27,7 @@ addRouter.post('/hmu', authenticate, async (req: LoggedInRequest, res: Response)
     while (working) {
         const tempInternalId = typeAsDocument.internalId + internalId;
 
-        const res = await Hardware.findOne({"internalId": tempInternalId})
-
-        if (res === null) {
+        if (await Hardware.findOne({"internalId": tempInternalId}) === null) {
             working = false;
             break
         }
