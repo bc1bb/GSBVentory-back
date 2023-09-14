@@ -1,4 +1,4 @@
-import User from "../schemas/users.js";
+import User from "../schemas/users";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import {Router} from "express";
@@ -16,14 +16,14 @@ loginRouter.post('/login', async (req, res) => {
         return res.status(401).json({error: 401});
     }
 
-    const isPasswordValid = await bcrypt.compare(password, user.password);
+    const isPasswordValid: boolean = await bcrypt.compare(password, user.password);
 
     if (!isPasswordValid) {
         return res.status(401).json({error: 401});
     }
 
     // Sign username and userType, we won't need more, using private token
-    const token = jwt.sign({username, userType: user.userType}, jwt_token);
+    const token: string = jwt.sign({"user": user._id}, jwt_token);
 
     res.json({token});
 });

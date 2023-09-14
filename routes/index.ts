@@ -1,6 +1,6 @@
-import healthcheckRouter from "./healthcheck.js";
-import loginRouter from "./login.js";
-import userRouter from "./user.js";
+import healthcheckRouter from "./healthcheck";
+import loginRouter from "./login";
+import userRouter from "./user";
 import {Router} from "express";
 
 const router = Router()
