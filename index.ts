@@ -1,7 +1,7 @@
 import express from 'express';
 import mongoose from "mongoose";
 import cors from 'cors';
-import router from './routes/index';
+import router from './routes';
 
 const db_url: string = process.env.DB_URL;
 const port: number = parseInt(process.env.PORT) || 3000;
