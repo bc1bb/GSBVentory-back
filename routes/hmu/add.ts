@@ -39,7 +39,7 @@ addRouter.post('/hmu', authenticate, async (req: LoggedInRequest, res: Response)
 
     await Hardware.collection.insertOne({type, "buyDate": new Date(buyDate), serialNumber, manufacturer, model, "endOfWarrantyDate": new Date(endOfWarrantyDate), "internalId": finalInternalId, note});
 
-    res.json({"status": finalInternalId});
+    res.json({"internalId": finalInternalId});
 });
 
 export default addRouter;
