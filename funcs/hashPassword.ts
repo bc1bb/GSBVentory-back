@@ -1,6 +1,6 @@
 import bcrypt from "bcrypt";
 
-const hashPassword = async (password) => {
+const hashPassword = async (password: string) => {
     // Simple function to hash passwords
     const hashRounds = 10;
 
