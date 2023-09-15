@@ -15,7 +15,7 @@ addRouter.post('/umu', authenticate, async (req: LoggedInRequest, res: Response)
     const hashedPassword = await hashPassword(password);
     const userTypeInt = parseInt(userType);
 
-    await User.collection.insertOne({username, hashedPassword, "userType": userTypeInt});
+    await User.collection.insertOne({username, "password": hashedPassword, "userType": userTypeInt});
 
     res.json({"status": "OK"});
 });
