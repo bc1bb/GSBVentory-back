@@ -4,7 +4,7 @@ import Hardware from "../../schemas/hardware";
 
 const editRouter = Router()
 
-editRouter.patch('/hmu', authenticate, async (req: LoggedInRequest, res: Response) => {
+editRouter.patch('/hmu', authenticate(2), async (req: LoggedInRequest, res: Response) => {
     const {internalId, type, buyDate, serialNumber, manufacturer, model, endOfWarrantyDate, note} = req.body
 
     if (await Hardware.findOne({internalId}) === null) {

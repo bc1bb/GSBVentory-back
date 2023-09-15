@@ -5,7 +5,7 @@ import HardwareType from "../../schemas/hardware_type";
 
 const addRouter = Router()
 
-addRouter.post('/hmu', authenticate, async (req: LoggedInRequest, res: Response) => {
+addRouter.post('/hmu', authenticate(2), async (req: LoggedInRequest, res: Response) => {
     const {type, buyDate, serialNumber, manufacturer, model, endOfWarrantyDate, note} = req.body
 
     // Input checking type

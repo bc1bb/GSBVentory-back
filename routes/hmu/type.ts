@@ -4,7 +4,7 @@ import HardwareType from "../../schemas/hardware_type";
 
 const typeRouter = Router()
 
-typeRouter.get('/hmu/type', authenticate, async (req: LoggedInRequest, res: Response) => {
+typeRouter.get('/hmu/type', authenticate(2), async (req: LoggedInRequest, res: Response) => {
     const list = await HardwareType.find().lean();
 
     const json = JSON.parse(JSON.stringify(list));
@@ -12,7 +12,7 @@ typeRouter.get('/hmu/type', authenticate, async (req: LoggedInRequest, res: Resp
     res.json(json);
 });
 
-typeRouter.post('/hmu/type', authenticate, async (req: LoggedInRequest, res: Response) => {
+typeRouter.post('/hmu/type', authenticate(2), async (req: LoggedInRequest, res: Response) => {
     const {name, internalId} = req.body
 
     if (await HardwareType.findOne({name}) !== null) {
@@ -24,7 +24,7 @@ typeRouter.post('/hmu/type', authenticate, async (req: LoggedInRequest, res: Res
     res.json({"status": "OK"});
 });
 
-typeRouter.delete('/hmu/type', authenticate, async (req: LoggedInRequest, res: Response) => {
+typeRouter.delete('/hmu/type', authenticate(2), async (req: LoggedInRequest, res: Response) => {
     const {name} = req.body
 
     if (await HardwareType.findOne({name}) === null) {

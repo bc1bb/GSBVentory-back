@@ -5,7 +5,7 @@ import hashPassword from "../../funcs/hashPassword";
 
 const addRouter = Router()
 
-addRouter.post('/umu', authenticate, async (req: LoggedInRequest, res: Response) => {
+addRouter.post('/umu', authenticate(3), async (req: LoggedInRequest, res: Response) => {
     const {username, password, userType} = req.body
 
     if (await User.findOne({username}) !== null) {

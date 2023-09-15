@@ -4,7 +4,7 @@ import Hardware from "../../schemas/hardware";
 
 const listRouter = Router()
 
-listRouter.get('/hmu', authenticate, async (req: LoggedInRequest, res: Response) => {
+listRouter.get('/hmu', authenticate(2), async (req: LoggedInRequest, res: Response) => {
     const list = await Hardware.find().lean();
 
     const json = JSON.parse(JSON.stringify(list));

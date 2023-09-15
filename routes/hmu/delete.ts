@@ -4,7 +4,7 @@ import Hardware from "../../schemas/hardware";
 
 const deleteRouter = Router()
 
-deleteRouter.delete('/hmu', authenticate, async (req: LoggedInRequest, res: Response) => {
+deleteRouter.delete('/hmu', authenticate(2), async (req: LoggedInRequest, res: Response) => {
     const {internalId} = req.body
 
     if (await Hardware.findOne({internalId}) === null) {

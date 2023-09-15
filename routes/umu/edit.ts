@@ -5,7 +5,7 @@ import hashPassword from "../../funcs/hashPassword";
 
 const editRouter = Router()
 
-editRouter.patch('/umu', authenticate, async (req: LoggedInRequest, res: Response) => {
+editRouter.patch('/umu', authenticate(3), async (req: LoggedInRequest, res: Response) => {
     const {username, userType} = req.body
 
     if (await User.findOne({username}) === null) {
@@ -19,7 +19,7 @@ editRouter.patch('/umu', authenticate, async (req: LoggedInRequest, res: Respons
     res.json({"status": "OK"});
 });
 
-editRouter.patch('/umu/password', authenticate, async (req: LoggedInRequest, res: Response) => {
+editRouter.patch('/umu/password', authenticate(2), async (req: LoggedInRequest, res: Response) => {
     const {username, password} = req.body
 
     if (await User.findOne({username}) === null) {

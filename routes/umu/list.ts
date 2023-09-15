@@ -4,7 +4,7 @@ import User from "../../schemas/users";
 
 const listRouter = Router()
 
-listRouter.get('/umu', authenticate, async (req: LoggedInRequest, res: Response) => {
+listRouter.get('/umu', authenticate(2), async (req: LoggedInRequest, res: Response) => {
     const list = await User.find().lean();
 
     const json = JSON.parse(JSON.stringify(list));
