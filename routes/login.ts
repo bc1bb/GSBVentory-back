@@ -2,7 +2,6 @@ import User from "../schemas/users";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import {Router} from "express";
-import mongoose from "mongoose";
 
 const jwt_token = process.env.JWT_TOKEN;
 
