@@ -1,0 +1,26 @@
+{
+    "configurations": [
+    {
+        "command": "npm run dev",
+        "name": "NPM DEV",
+        "request": "launch",
+        "type": "node-terminal",
+        "env": {
+            "JWT_TOKEN": "OpfrhfMj1wC6FrDH0Zvwe/o6lQyDSqgcaapThuE=",
+            "DB_URL": "mongodb://gsbv:gsbv@127.0.0.1/gsbv",
+            "PORT": "3000"
+        }
+    },
+    {
+        "command": "npm run start",
+        "name": "NPM PROD",
+        "request": "launch",
+        "type": "node-terminal",
+        "env": {
+            "JWT_TOKEN": "OpfrhfMj1wC6FrDH0Zvwe/o6lQyDSqgcaapThuE=",
+            "DB_URL": "mongodb://gsbv:gsbv@127.0.0.1/gsbv",
+            "PORT": "3000"
+        }
+    }
+    ]
+}

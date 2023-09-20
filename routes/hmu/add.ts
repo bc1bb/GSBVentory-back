@@ -10,7 +10,7 @@ addRouter.post('/hmu', authenticate(2), async (req: LoggedInRequest, res: Respon
 
     // Input checking type
     const types = await HardwareType.find().lean();
-    let typesArray: Array<string> = [];
+    let typesArray: string[] = [];
     JSON.parse(JSON.stringify(types)).forEach((i: any) => { typesArray.push(i.name); });
 
     if (!typesArray.includes(type)) {
@@ -32,7 +32,7 @@ addRouter.post('/hmu', authenticate(2), async (req: LoggedInRequest, res: Respon
             break
         }
 
-        internalId = (parseInt(internalId)+1).toString();
+        internalId = (parseInt(internalId, 10)+1).toString();
     }
 
     const finalInternalId = (typeAsDocument.internalId + internalId);

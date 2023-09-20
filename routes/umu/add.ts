@@ -13,7 +13,7 @@ addRouter.post('/umu', authenticate(3), async (req: LoggedInRequest, res: Respon
     }
 
     const hashedPassword = await hashPassword(password);
-    const userTypeInt = parseInt(userType);
+    const userTypeInt = parseInt(userType, 10);
 
     await User.collection.insertOne({username, "password": hashedPassword, "userType": userTypeInt});
 

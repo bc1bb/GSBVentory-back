@@ -3,7 +3,7 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import {Router} from "express";
 
-const jwt_token = process.env.JWT_TOKEN;
+const JWT_TOKEN = process.env.JWT_TOKEN;
 
 const loginRouter = Router()
 
@@ -23,7 +23,7 @@ loginRouter.post('/login', async (req, res) => {
     }
 
     // Sign username and userType, we won't need more, using private token
-    const token: string = jwt.sign({"user": user._id}, jwt_token);
+    const token: string = jwt.sign({"user": user._id}, JWT_TOKEN);
 
     res.json({token});
 });

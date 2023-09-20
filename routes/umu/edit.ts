@@ -12,7 +12,7 @@ editRouter.patch('/umu', authenticate(3), async (req: LoggedInRequest, res: Resp
         return res.status(406).json({error: "Invalid username"});
     }
 
-    const userTypeInt = parseInt(userType);
+    const userTypeInt = parseInt(userType, 10);
 
     await User.collection.findOneAndUpdate({username}, {$set:{username, "userType": userTypeInt}});
 

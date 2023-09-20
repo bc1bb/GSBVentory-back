@@ -3,10 +3,10 @@ import mongoose from "mongoose";
 import cors from 'cors';
 import router from './routes';
 
-const db_url: string = process.env.DB_URL;
-const port: number = parseInt(process.env.PORT) || 3000;
+const DB_URL: string = process.env.DB_URL;
+const PORT: number = parseInt(process.env.PORT) || 3000;
 
-mongoose.connect(db_url).then(r => console.log("Connected to database"));
+mongoose.connect(DB_URL).then(r => console.log("Connected to database"));
 
 const app = express();
 
@@ -17,6 +17,6 @@ app.use(cors());
 
 app.use(router);
 
-app.listen(port, () => {
-    console.log(`Server running on port ${port}`);
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
 });

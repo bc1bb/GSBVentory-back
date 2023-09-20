@@ -20,7 +20,7 @@
     "prebuild": "tslint -c tslint.json -p tsconfig.json --fix",
     "build": "tsc",
     "prestart": "npm run build",
-    "start": "node index.ts",
+    "start": "ts-node index.ts",
     "dev": "nodemon index.ts"
   }
 }

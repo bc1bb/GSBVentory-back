@@ -8,7 +8,7 @@ export interface LoggedInRequest extends Request {
 
 const authenticate = (minimumUserType: number) => {
     return async (req: Request, res: Response, next: NextFunction) => {
-        const jwt_token = process.env.JWT_TOKEN;
+        const JWT_TOKEN = process.env.JWT_TOKEN;
 
         // Grabs token from header
         // Remove "Bearer " if it's there
@@ -19,7 +19,7 @@ const authenticate = (minimumUserType: number) => {
         }
 
         // Decodes received token using private token
-        jwt.verify(token, jwt_token, async (err, decoded: any) => {
+        jwt.verify(token, JWT_TOKEN, async (err, decoded: any) => {
             if (err) {
                 return res.status(401).json({error: 'Invalid Token'});
             }

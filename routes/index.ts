@@ -1,7 +1,7 @@
+import {Router} from "express";
 import healthcheckRouter from "./healthcheck";
 import loginRouter from "./login";
 import userRouter from "./user";
-import {Router} from "express";
 import hmuRouter from "./hmu";
 import umuRouter from "./umu";
 
