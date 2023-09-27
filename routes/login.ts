@@ -3,7 +3,9 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import {Router} from "express";
 import UserObject from "../objs/User";
+import * as dotenv from "dotenv";
 
+dotenv.config({ path: __dirname+'/../.env' });
 const JWT_TOKEN = process.env.JWT_TOKEN;
 
 const loginRouter = Router()
