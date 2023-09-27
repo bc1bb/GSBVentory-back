@@ -13,7 +13,7 @@ const PORT: number = parseInt(process.env.PORT, 10) || 3000;
 const log: Logger<ILogObj> = new Logger();
 
 mongoose.connect(DB_URL).then(
-    () => { log.info("connected to database"); },
+    () => { log.info("Connected to database"); },
     (reason) => { log.fatal(reason); }
 )
 
