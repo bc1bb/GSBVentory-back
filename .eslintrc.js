@@ -134,7 +134,6 @@ module.exports = {
         "id-match": "warn",
         "jsdoc/check-alignment": "warn",
         "jsdoc/check-indentation": "warn",
-        "jsdoc/newline-after-description": "warn",
         "max-classes-per-file": [
             "warn",
             1
