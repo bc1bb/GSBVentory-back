@@ -5,7 +5,7 @@ const userRouter = Router()
 
 // Simple endpoint that returns user for now.
 
-userRouter.get('/user', authenticate(1), async (req: LoggedInRequest, res: Response) => {
+userRouter.get('/user', authenticate(1), (req: LoggedInRequest, res: Response) => {
     res.json(req.user);
 });
 
