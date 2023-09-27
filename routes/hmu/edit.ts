@@ -1,11 +1,12 @@
 import {Response, Router} from "express";
 import authenticate, {LoggedInRequest} from "../../funcs/authenticate";
 import Hardware from "../../schemas/hardware";
+import HardwareObject from "../../objs/Hardware";
 
 const editRouter = Router()
 
 editRouter.patch('/hmu', authenticate(2), async (req: LoggedInRequest, res: Response) => {
-    const {internalId, type, buyDate, serialNumber, manufacturer, model, endOfWarrantyDate, note} = req.body
+    const {internalId, buyDate, serialNumber, manufacturer, model, endOfWarrantyDate, note}: HardwareObject = req.body
 
     if (await Hardware.findOne({internalId}) === null) {
         return res.status(406).json({error: "Invalid internalId"});

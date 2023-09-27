@@ -2,16 +2,18 @@ import {Response, Router} from "express";
 import authenticate, {LoggedInRequest} from "../../funcs/authenticate";
 import Hardware from "../../schemas/hardware";
 import HardwareType from "../../schemas/hardware_type";
+import HardwareObject from "../../objs/Hardware";
+import HardwareTypeObject from "../../objs/HardwareType";
 
 const addRouter = Router()
 
 addRouter.post('/hmu', authenticate(2), async (req: LoggedInRequest, res: Response) => {
-    const {type, buyDate, serialNumber, manufacturer, model, endOfWarrantyDate, note} = req.body
+    const {type, buyDate, serialNumber, manufacturer, model, endOfWarrantyDate, note}: HardwareObject = req.body
 
     // Input checking type
     const types = await HardwareType.find().lean();
     const typesArray: string[] = [];
-    JSON.parse(JSON.stringify(types)).forEach((i: any) => { typesArray.push(i.name); });
+    JSON.parse(JSON.stringify(types)).forEach((i: HardwareTypeObject) => { typesArray.push(i.name); });
 
     if (!typesArray.includes(type)) {
         return res.status(406).json({error: "Invalid Type"});
