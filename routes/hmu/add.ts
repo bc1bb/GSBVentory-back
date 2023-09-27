@@ -10,7 +10,7 @@ addRouter.post('/hmu', authenticate(2), async (req: LoggedInRequest, res: Respon
 
     // Input checking type
     const types = await HardwareType.find().lean();
-    let typesArray: string[] = [];
+    const typesArray: string[] = [];
     JSON.parse(JSON.stringify(types)).forEach((i: any) => { typesArray.push(i.name); });
 
     if (!typesArray.includes(type)) {
