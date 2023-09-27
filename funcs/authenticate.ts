@@ -2,9 +2,10 @@ import jwt from "jsonwebtoken";
 import {NextFunction, Request, Response} from "express";
 import fetchUser from "./fetchUser";
 import CookieObject from "../objs/Cookie";
+import UserObject from "../objs/User";
 
 export interface LoggedInRequest extends Request {
-    user: object;
+    user: UserObject;
 }
 
 const authenticate = (minimumUserType: number) => {
