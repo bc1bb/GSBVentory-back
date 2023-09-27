@@ -2,15 +2,20 @@ import {Response, Router} from "express";
 import authenticate, {LoggedInRequest} from "../../funcs/authenticate";
 import Hardware from "../../schemas/hardware";
 import HardwareObject from "../../objs/Hardware";
+import handleError from "../../funcs/handleError";
 
-const listRouter = Router()
+const listRouter = Router();
 
-listRouter.get('/hmu', authenticate(2), async (req: LoggedInRequest, res: Response) => {
-    const list = await Hardware.find().lean();
+listRouter.get('/hmu', authenticate(2), (req: LoggedInRequest, res: Response) => {
+    Hardware.find().lean().then(
+        (list) => {
+            const json = JSON.parse(JSON.stringify(list)) as HardwareObject[];
 
-    const json: HardwareObject[] = JSON.parse(JSON.stringify(list));
-
-    res.json(json);
+            res.json(json);
+        },
+        (reason) => { handleError(reason, res); }
+    ).catch((reason) => { handleError(reason, res); }
+    );
 });
 
 export default listRouter;
