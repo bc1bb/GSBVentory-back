@@ -1,11 +1,12 @@
 import {Response, Router} from "express";
 import authenticate, {LoggedInRequest} from "../../funcs/authenticate";
 import User from "../../schemas/users";
+import UserObject from "../../objs/User";
 
 const deleteRouter = Router()
 
 deleteRouter.delete('/umu', authenticate(3), async (req: LoggedInRequest, res: Response) => {
-    const {username} = req.body
+    const {username}: UserObject = req.body
 
     if (await User.findOne({username}) === null) {
         return res.status(406).json({error: "Invalid username"});

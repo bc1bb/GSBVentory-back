@@ -2,13 +2,14 @@ import User from "../schemas/users";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import {Router} from "express";
+import UserObject from "../objs/User";
 
 const JWT_TOKEN = process.env.JWT_TOKEN;
 
 const loginRouter = Router()
 
 loginRouter.post('/login', async (req, res) => {
-    const {username, password} = req.body;
+    const {username, password}: UserObject = req.body;
 
     const user = await User.findOne({username});
 
