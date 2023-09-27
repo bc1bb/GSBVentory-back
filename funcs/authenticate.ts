@@ -1,13 +1,14 @@
 import jwt from "jsonwebtoken";
 import {NextFunction, Request, Response} from "express";
 import fetchUser from "./fetchUser";
+import CookieObject from "../objs/Cookie";
 
 export interface LoggedInRequest extends Request {
     user: object;
 }
 
 const authenticate = (minimumUserType: number) => {
-    return async (req: Request, res: Response, next: NextFunction) => {
+    return (req: Request, res: Response, next: NextFunction) => {
         const JWT_TOKEN = process.env.JWT_TOKEN;
 
         // Grabs token from header
@@ -19,7 +20,7 @@ const authenticate = (minimumUserType: number) => {
         }
 
         // Decodes received token using private token
-        jwt.verify(token, JWT_TOKEN, async (err, decoded: any) => {
+        jwt.verify(token, JWT_TOKEN, async (err, decoded: CookieObject) => {
             if (err) {
                 return res.status(401).json({error: 'Invalid Token'});
             }
@@ -28,7 +29,6 @@ const authenticate = (minimumUserType: number) => {
             // Converting req to LoggedInRequest, so we can add user data to the request
             // Therefore allowing us to send data from this middleware to the actual route that will know who be doing what (what da dog doin)
             const user = await fetchUser(decoded.user);
-
             (req as LoggedInRequest).user = user;
 
             // Checking if user is allowed to see page
