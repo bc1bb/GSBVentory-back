@@ -2,7 +2,9 @@ import express from 'express';
 import mongoose from "mongoose";
 import cors from 'cors';
 import router from './routes';
+import * as dotenv from "dotenv";
 
+dotenv.config({ path: __dirname+'/.env' });
 const DB_URL: string = process.env.DB_URL;
 const PORT: number = parseInt(process.env.PORT) || 3000;
 
