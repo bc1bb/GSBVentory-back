@@ -4,7 +4,7 @@ gsbdb = db.getSiblingDB('gsbv');
 
 gsbdb.createCollection('hardwares');
 gsbdb.createCollection('users');
-gsbdb.createCollection('hardware_types');
+gsbdb.createCollection('hardwaretypes');
 
 gsbdb.createUser({
     user: 'gsbv',
@@ -17,10 +17,11 @@ gsbdb.createUser({
     ],
 });
 
-gsbdb.users.insertOne([
+gsbdb.users.insertOne(
     {
         username: 'root',
         password: '$2b$10$4bMeCqR9uOAnfqw4NUW0SOX65xjm28veObBpkQOI7iuq7GLMfltaS',
         userType: '4'
     }
-]);
+);
+
