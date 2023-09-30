@@ -8,6 +8,9 @@ const editRouter = Router()
 editRouter.patch('/hmu', authenticate(2), async (req: LoggedInRequest, res: Response) => {
     const {internalId, buyDate, serialNumber, manufacturer, model, endOfWarrantyDate, note}: HardwareObject = req.body
 
+    if (internalId === "") {
+        return res.status(406).json({error: "Invalid internalId"});
+    }
     if (await Hardware.findOne({internalId}) === null) {
         return res.status(406).json({error: "Invalid internalId"});
     }

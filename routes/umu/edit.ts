@@ -9,6 +9,9 @@ const editRouter = Router()
 editRouter.patch('/umu', authenticate(3), async (req: LoggedInRequest, res: Response) => {
     let {username, userType}: UserObject = req.body
 
+    if (username == "") {
+        return res.status(406).json({error: "Invalid username"});
+    }
     if (await User.findOne({username}) === null) {
         return res.status(406).json({error: "Invalid username"});
     }
