@@ -18,7 +18,7 @@ editRouter.patch('/umu', authenticate(3), async (req: LoggedInRequest, res: Resp
 
     // we don't talk about this
     //@ts-ignore
-    if (typeof userType === "string") userType = parseInt(userType, 10);
+    userType = parseInt(userType, 10);
 
     await User.collection.findOneAndUpdate({username}, {$set:{username, userType}});
 
