@@ -7,11 +7,15 @@ import UserObject from "../../objs/User";
 const editRouter = Router()
 
 editRouter.patch('/umu', authenticate(3), async (req: LoggedInRequest, res: Response) => {
-    const {username, userType}: UserObject = req.body
+    let {username, userType}: UserObject = req.body
 
     if (await User.findOne({username}) === null) {
         return res.status(406).json({error: "Invalid username"});
     }
+
+    // we don't talk about this
+    //@ts-ignore
+    if (typeof userType === "string") userType = parseInt(userType, 10);
 
     await User.collection.findOneAndUpdate({username}, {$set:{username, userType}});
 
